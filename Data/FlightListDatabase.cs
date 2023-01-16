@@ -16,6 +16,8 @@ namespace Airport.Data
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<FlightList>().Wait();
+            _database.CreateTableAsync<Ticket>().Wait();
+            _database.CreateTableAsync<ListTicket>().Wait();
         }
         public Task<List<FlightList>> GetFlightListsAsync()
         {
@@ -43,5 +45,49 @@ namespace Airport.Data
             return _database.DeleteAsync(slist);
         }
 
+        public Task<int> SaveTicketAsync(Ticket ticket)
+        {
+            if (ticket.ID != 0)
+            {
+                return _database.UpdateAsync(ticket);
+            }
+            else
+            {
+                return _database.InsertAsync(ticket);
+            }
+        }
+        public Task<int> DeleteTicketAsync( Ticket ticket)
+        {
+            return _database.DeleteAsync(ticket);
+        }
+        public Task<List<Ticket>> GetTicketsAsync()
+        {
+            return _database.Table<Ticket>().ToListAsync();
+        }
+        public Task<int> SaveListTicketAsync(ListTicket listt)
+        {
+            if (listt.ID != 0)
+            {
+                return _database.UpdateAsync(listt);
+            }
+            else
+            {
+                return _database.InsertAsync(listt);
+            }
+        }
+        public Task<List<Ticket>> GetListTicketsAsync(int flightlistid)
+        {
+            return _database.QueryAsync<Ticket>(
+            "select T.ID, T.Description from Ticket T"
+            + " inner join ListTicket LT"
+            + " on T.ID = LT.TicketID where LT.FlightListID = ?",
+            flightlistid);
+        }
+
     }
 }
+    
+    
+
+
+
