@@ -75,6 +75,11 @@ namespace Airport.Data
                 return _database.InsertAsync(listt);
             }
         }
+        public Task<int> DeleteListTicketsAsync(ListTicket listt)
+        {
+            return _database.DeleteAsync(listt);
+        }
+
         public Task<List<Ticket>> GetListTicketsAsync(int flightlistid)
         {
             return _database.QueryAsync<Ticket>(
