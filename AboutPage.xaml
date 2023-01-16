@@ -6,13 +6,12 @@
     <VerticalStackLayout Spacing="10" Margin="10">
         <HorizontalStackLayout Spacing="10">
             <Image Source="airplane.png"
- SemanticProperties.Description="My Flights List"
+ SemanticProperties.Description="Best airline services for your best experiences"
 HeightRequest="64" />
-            <Label FontSize="22" FontAttributes="Bold" Text="My Flights
-Lists" VerticalOptions="End" />
+            <Label FontSize="22" FontAttributes="Bold" Text="Your best choice" VerticalOptions="End" />
             <Label FontSize="22" Text="v1.0" VerticalOptions="End" />
         </HorizontalStackLayout>
-        <Label Text="This app will help you to manage your vacantionss" />
+        <Label Text="This app will help you to manage your vacations" />
 
     </VerticalStackLayout>
 </ContentPage>
